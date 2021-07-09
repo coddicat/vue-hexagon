@@ -2,6 +2,7 @@
 Vue component to render div element as hexagon with inner content
 
 #### example:
+https://vue-hexagon.coddicat.com/
 <img src="https://github.com/coddicat/vue-hexagon/blob/master/example/example.png" width="600"/>
 
 ## Installation
