@@ -1,6 +1,6 @@
 {
   "name": "@coddicat/vue-hexagon",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Vue component to render div element as hexagon with inner content",
   "author": "Rodion Shlomo Solomonyk",
   "homepage": "https://github.com/coddicat/vue-hexagon",
