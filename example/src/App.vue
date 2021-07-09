@@ -60,10 +60,10 @@
 
 <script lang="ts">
 import Vue from "vue";
-//import Hexagon from "./dest/hexagon.vue";
+import Hexagon from "@coddicat/vue-hexagon";
 export default Vue.extend({
   components: {
-    //Hexagon,
+    Hexagon,
   },
   data: () => ({
     eventName: "N/A",
@@ -83,7 +83,6 @@ export default Vue.extend({
         type: evt.type,
         target: evt.target
       };
-      console.log(evt);
     },
   },
 });
