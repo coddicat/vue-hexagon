@@ -3,6 +3,7 @@
     <div
       class="coddicat_hexagon__border coddicat_hexagon"
       :style="borderStyles"
+      v-if="borderSize > 0"
     ></div>
     <div
       :class="contentClass"
