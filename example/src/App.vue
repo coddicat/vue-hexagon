@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <div class="column">
-      <Hexagon @click="onClick('#1')">
-        Default
-      </Hexagon>
-      <Hexagon
-        @click="onClick('#2')"
-        :background-image="`url(https://picsum.photos/id/10/100/100)`"
-      >
-        <span style="color: #0ff; text-align: center">Background Image</span>
-      </Hexagon>
-      <Hexagon
-        @click="onClick('#3')"
-        :border-size="10"
-        :background-image="`url(https://picsum.photos/id/20/100/100)`"
-      >
-        <span style="color: #f0f">Border</span>
-      </Hexagon>
-    </div>
+    <Hexagon class="hexagon" @click="onClick('#1')">
+      Default
+    </Hexagon>
+    <Hexagon
+      class="hexagon"
+      @click="onClick('#2')"
+      :background-image="`url(https://picsum.photos/id/10/100/100)`"
+    >
+      <span style="color: #0ff; text-align: center">Background Image</span>
+    </Hexagon>
+    <Hexagon
+      @click="onClick('#3')"
+      :border-size="10"
+      :background-image="`url(https://picsum.photos/id/20/100/100)`"
+    >
+      <span style="color: #f0f">Border</span>
+    </Hexagon>
     <div class="column">
       <Hexagon
         @click="onClick('#4')"
@@ -81,7 +80,7 @@ export default Vue.extend({
         offsetX: evt.offsetX,
         offsetY: evt.offsetY,
         type: evt.type,
-        target: evt.target
+        target: evt.target,
       };
     },
   },
@@ -89,6 +88,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+#app {
+  position: relative;
+}
+.hexagon {
+  position: absolute !important;
+}
 .column {
   display: inline-block;
   margin-right: 50px;

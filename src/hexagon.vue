@@ -6,18 +6,10 @@
       v-if="borderSize > 0"
     ></div>
     <div
+      ref="content"
       :class="contentClass"
       class="coddicat_hexagon__content coddicat_hexagon"
       :style="contentStyles"
-      @click="($e) => $emit('click', $e)"
-      @mousedown="($e) => $emit('mousedown', $e)"
-      @mouseup="($e) => $emit('mouseup', $e)"
-      @mousewheel="($e) => $emit('mousewheel', $e)"
-      @mousemove="($e) => $emit('mousemove', $e)"
-      @mouseenter="($e) => $emit('mouseenter', $e)"
-      @mouseover="($e) => $emit('mouseover', $e)"
-      @mouseleave="($e) => $emit('mouseleave', $e)"
-      @mouseout="($e) => $emit('mouseout', $e)"
     >
       <slot></slot>
     </div>
@@ -25,8 +17,27 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+const events = [
+  "click",
+  "mousedown",
+  "mouseup",
+  "mousewheel",
+  "mousemove",
+  "mouseenter",
+  "mouseover",
+  "mouseleave",
+  "mouseout",
+];
 export default /*#__PURE__*/ Vue.extend({
   name: "hexagon",
+  mounted() {
+    const el = this.$refs.content as Element;
+    events.forEach((event) => {
+      if (this.$listeners[event]) {
+        el.addEventListener(event, ($e: any) => this.$emit(event, $e));
+      }
+    });
+  },
   props: {
     borderSize: {
       type: Number,
