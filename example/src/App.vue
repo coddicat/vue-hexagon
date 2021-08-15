@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <Hexagon class="hexagon" @click="onClick('#1')">
-      Default
-    </Hexagon>
-    <Hexagon
-      class="hexagon"
-      @click="onClick('#2')"
-      :background-image="`url(https://picsum.photos/id/10/100/100)`"
-    >
-      <span style="color: #0ff; text-align: center">Background Image</span>
-    </Hexagon>
-    <Hexagon
-      @click="onClick('#3')"
-      :border-size="10"
-      :background-image="`url(https://picsum.photos/id/20/100/100)`"
-    >
-      <span style="color: #f0f">Border</span>
-    </Hexagon>
+    <div class="column">
+      <Hexagon @click="onClick('#1')" :border-size="border">
+        Default
+      </Hexagon>
+      <Hexagon
+        @click="onClick('#2')"
+        :background-image="`url(https://picsum.photos/id/10/100/100)`"
+      >
+        <span style="color: #0ff; text-align: center">Background Image</span>
+      </Hexagon>
+      <Hexagon
+        @click="onClick('#3')"
+        :border-size="10"
+        :background-image="`url(https://picsum.photos/id/20/100/100)`"
+      >
+        <span style="color: #f0f">Border</span>
+      </Hexagon>
+    </div>
     <div class="column">
       <Hexagon
         @click="onClick('#4')"
@@ -67,8 +68,12 @@ export default Vue.extend({
   data: () => ({
     eventName: "N/A",
     eventData: {},
+    border: 1,
   }),
   methods: {
+    onBorder() {
+      this.border = 10;
+    },
     onClick(text: string): void {
       alert(`clicked: ${text}`);
     },
@@ -90,9 +95,6 @@ export default Vue.extend({
 <style lang="scss">
 #app {
   position: relative;
-}
-.hexagon {
-  position: absolute !important;
 }
 .column {
   display: inline-block;
