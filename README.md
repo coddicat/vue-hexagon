@@ -12,7 +12,7 @@ npm i @coddicat/vue-hexagon
 
 ## Usage
 template:
-```
+```html
 <Hexagon
     @click="onClick"
     @mouseover="onMouseEvent"
@@ -27,7 +27,7 @@ template:
 ```
 
 script:
-```
+```ts
 import Hexagon from "@coddicat/vue-hexagon";
 export default Vue.extend({
   components: {
