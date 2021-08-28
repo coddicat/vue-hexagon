@@ -26,22 +26,24 @@ template:
 </Hexagon>
 ```
 
-script:
+type script:
 ```ts
+import { Component, Vue } from "vue-property-decorator";
 import Hexagon from "@coddicat/vue-hexagon";
-export default Vue.extend({
+@Component({
+  name: "HexagonExample",
   components: {
-    Hexagon,
-  },
-  methods: {
-    onClick(e: any): void {
-      console.log(e);
-    },
-    onMouseEvent(e: MouseEvent): void {
-      console.log(e);
-    }
+    Hexagon
   }
 })
+export default class HexagonExample extends Vue { 
+  public onClick(e: any): void {
+    console.log(e);
+  },
+  public onMouseEvent(e: MouseEvent): void {
+    console.log(e);
+  }
+}
 ```
 
 ## Props

@@ -59,25 +59,27 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Hexagon from "@coddicat/vue-hexagon";
-export default Vue.extend({
+import Hexagon from "@coddicat/vue-hexagon"; //"../../lib/index";
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({
+  name: "HexagonExample",
   components: {
-    Hexagon,
-  },
-  data: () => ({
-    eventName: "N/A",
-    eventData: {},
-    border: 1,
-  }),
-  methods: {
-    onBorder() {
+    Hexagon
+  }
+})
+export default class HexagonExample extends Vue { 
+    private eventName = "N/A";
+    private eventData = {};
+    private border = 1;
+
+    public onBorder(): void {
       this.border = 10;
-    },
-    onClick(text: string): void {
+    }
+    public onClick(text: string): void {
       alert(`clicked: ${text}`);
-    },
-    onMouseEvent(name: string, evt: MouseEvent): void {
+    }
+    public onMouseEvent(name: string, evt: MouseEvent): void {
       this.eventName = name;
       this.eventData = {
         clientX: evt.clientX,
@@ -87,9 +89,8 @@ export default Vue.extend({
         type: evt.type,
         target: evt.target,
       };
-    },
-  },
-});
+    }
+}
 </script>
 
 <style lang="scss">
