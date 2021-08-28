@@ -16,7 +16,8 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import { Component, Prop, Vue } from "vue-property-decorator";
+
 const events = [
   "click",
   "mousedown",
@@ -28,76 +29,59 @@ const events = [
   "mouseleave",
   "mouseout",
 ];
-export default /*#__PURE__*/ Vue.extend({
-  name: "hexagon",
-  mounted() {
+
+
+@Component({
+  name: "Hexagon",
+})
+export default class Hexagon extends Vue { 
+  @Prop({ required: false, default: 1.5 }) private borderSize!: number;
+  @Prop({ required: false, default: "#000" }) private borderColor!: string;
+  @Prop({ required: false, default: 100 }) private size!: number;
+  @Prop({ required: false, default: "#fff" }) private backgroundColor!: string;
+  @Prop({ required: false, default: undefined }) private backgroundImage: string | undefined;
+  @Prop({ required: false, default: undefined }) private contentStyle: object | undefined;
+  @Prop({ required: false, default: undefined }) private contentClass: string | undefined;
+
+  get wrapperStyle(): object {
+    const px = `${this.size}px`;
+    return {
+      width: px,
+      height: px,
+    };
+  }
+
+  get contentStyles(): object {
+    const px = `${this.size}px`;
+    const innerStyles = {
+      width: px,
+      height: px,
+      "background-color": this.backgroundColor,
+      "background-image": this.backgroundImage,
+    };
+    return { ...innerStyles, ...this.contentStyle };
+  }
+
+  get borderStyles(): object {
+    const px = `${-this.borderSize}px`;
+    return {
+      top: px,
+      right: px,
+      bottom: px,
+      left: px,
+      "background-color": this.borderColor,
+    };
+  }
+
+  mounted(): void {
     const el = this.$refs.content as Element;
     events.forEach((event) => {
       if (this.$listeners[event]) {
         el.addEventListener(event, ($e: any) => this.$emit(event, $e));
       }
     });
-  },
-  props: {
-    borderSize: {
-      type: Number,
-      default: 1.5,
-    },
-    borderColor: {
-      type: String,
-      default: "#000",
-    },
-    size: {
-      type: Number,
-      default: 100,
-    },
-    backgroundColor: {
-      type: String,
-      default: "#fff",
-    },
-    backgroundImage: {
-      type: String,
-      default: undefined,
-    },
-    contentStyle: {
-      type: Object,
-      default: undefined,
-    },
-    contentClass: {
-      type: String,
-      default: undefined,
-    },
-  },
-  computed: {
-    wrapperStyle(): any {
-      const px = `${this.size}px`;
-      return {
-        width: px,
-        height: px,
-      };
-    },
-    contentStyles(): any {
-      const px = `${this.size}px`;
-      const innerStyles = {
-        width: px,
-        height: px,
-        "background-color": this.backgroundColor,
-        "background-image": this.backgroundImage,
-      };
-      return { ...innerStyles, ...this.contentStyle };
-    },
-    borderStyles(): any {
-      const px = `${-this.borderSize}px`;
-      return {
-        top: px,
-        right: px,
-        bottom: px,
-        left: px,
-        "background-color": this.borderColor,
-      };
-    },
-  },
-});
+  }
+}
 </script>
 
 <style lang="scss">

@@ -1,15 +1,14 @@
-import Vue from "vue";
-declare const _default: import("vue/types/vue").ExtendedVue<Vue, unknown, unknown, {
-    wrapperStyle: any;
-    contentStyles: any;
-    borderStyles: any;
-}, {
-    borderSize: number;
-    borderColor: string;
-    size: number;
-    backgroundColor: string;
-    backgroundImage: string;
-    contentStyle: any;
-    contentClass: string;
-}>;
-export default _default;
+import { Vue } from "vue-property-decorator";
+export default class Hexagon extends Vue {
+    private borderSize;
+    private borderColor;
+    private size;
+    private backgroundColor;
+    private backgroundImage;
+    private contentStyle;
+    private contentClass;
+    get wrapperStyle(): object;
+    get contentStyles(): object;
+    get borderStyles(): object;
+    mounted(): void;
+}
