@@ -100,6 +100,7 @@ export default class Hexagon extends Vue {
   background-size: contain;
   margin: auto;
   user-select: none;
+  pointer-events: none;
 
   &__content {
     background-size: contain;
@@ -111,6 +112,7 @@ export default class Hexagon extends Vue {
     cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    pointer-events: all;
   }
 
   &__wrapper {
@@ -118,6 +120,7 @@ export default class Hexagon extends Vue {
     //margin: auto;
     //transform: translate(-50%, -50%);
     user-select: none;
+    pointer-events: none;
   }
 }
 </style>
